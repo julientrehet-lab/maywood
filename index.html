@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>[hidden]{display:none!important}</style>
+<title>Maywood at Eurobike</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<style>
+/* Layout: full-width colour bands, one per section, content in a 1120px column; sticky section nav on top. Single deliberate colourful light look. */
+:root {
+  --ink: #14213D;       /* navy text and dark bands */
+  --paper: #FBF7EF;     /* warm paper */
+  --sand: #F1E8D8;      /* second light band */
+  --lime: #D4F53C;      /* CYLO electric lime */
+  --coral: #E2456B;     /* Maywood coral */
+  --violet: #3A2C78;    /* deep violet */
+  --sky: #7FB8E6;
+  --amber: #FFB547;
+  --mint: #7FE0B0;
+  --muted: #4E5874;
+  --onDark: #E8EBF5;
+  --line: rgba(20,33,61,.14);
+  --display: "Oswald", "Arial Narrow", Impact, sans-serif;
+  --body: "DM Sans", "Segoe UI", Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--ink); }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+section.band { padding-block: 88px; scroll-margin-top: 56px; }
+h1, h2, h3 { font-family: var(--display); text-transform: uppercase; line-height: 1.02; margin: 0; text-wrap: balance; letter-spacing: .01em; }
+h2 { font-size: clamp(40px, 6vw, 72px); }
+h3 { font-size: 26px; }
+p { margin: 0; }
+.eyebrow { font-weight: 700; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; }
+.lead { font-size: 20px; max-width: 62ch; }
+.stack { display: flex; flex-direction: column; gap: 20px; }
+.grid { display: grid; gap: 20px; }
+.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 860px) { .g3, .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .g2, .g3, .g4 { grid-template-columns: minmax(0, 1fr); } section.band { padding-block: 64px; } }
+.tile { border-radius: 22px; padding: 26px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.num { font-family: var(--display); font-size: clamp(44px, 6vw, 64px); line-height: 1; font-variant-numeric: tabular-nums; }
+.small { font-size: 14px; }
+.src { font-size: 13px; color: var(--muted); }
+.dark .src { color: #B9C0D8; }
+.chartbox { overflow-x: auto; }
+svg text { font-family: var(--body); }
+
+/* nav */
+nav.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--ink); color: var(--paper); }
+nav.top .wrap { display: flex; align-items: center; gap: 18px; height: 56px; }
+nav.top .brand { font-family: var(--display); font-size: 22px; letter-spacing: .08em; color: var(--lime); text-decoration: none; flex: none; }
+nav.top .links { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+nav.top .links::-webkit-scrollbar { display: none; }
+nav.top a.l { color: var(--onDark); text-decoration: none; font-size: 14px; font-weight: 500; padding: 6px 10px; border-radius: 999px; white-space: nowrap; }
+nav.top a.l:hover, nav.top a.l:focus-visible, nav.top a.l.on { background: var(--lime); color: var(--ink); outline: none; }
+
+/* hero */
+.hero { background: linear-gradient(120deg, var(--ink) 0%, var(--violet) 58%, var(--coral) 100%); color: var(--paper); padding-block: 72px 88px; position: relative; overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; align-items: center; position: relative; }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } }
+.pill { display: inline-block; background: var(--lime); color: var(--ink); font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; padding: 8px 16px; border-radius: 999px; }
+.hero h1 { font-size: clamp(72px, 13vw, 156px); letter-spacing: .03em; }
+.hero .tag { font-size: clamp(22px, 3vw, 30px); font-weight: 500; }
+.hero .tag b { color: var(--lime); }
+.glow { position: absolute; right: -160px; top: -160px; width: 560px; height: 560px; border-radius: 50%; background: radial-gradient(circle, rgba(212,245,60,.45), rgba(212,245,60,0) 65%); pointer-events: none; }
+.qrcard { background: var(--paper); color: var(--ink); border-radius: 26px; padding: 22px; display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 18px; align-items: center; box-shadow: 0 24px 60px rgba(0,0,0,.3); max-width: 460px; }
+.qrcard .qr { width: 150px; height: 150px; background: #fff; border-radius: 12px; padding: 8px; }
+.qrcard .qr svg, .qrbig svg { width: 100%; height: 100%; display: block; }
+.bikeart { width: 100%; max-width: 520px; justify-self: center; }
+.ride { animation: ride 6s ease-in-out infinite alternate; transform-origin: center; }
+@keyframes ride { from { transform: translateX(-8px); } to { transform: translateX(8px); } }
+
+/* bands */
+.b-paper { background: var(--paper); }
+.b-sand { background: var(--sand); }
+.b-lime { background: linear-gradient(135deg, #E4FA62, #C6EC2C); }
+.b-coral { background: linear-gradient(135deg, #FF6F61, var(--coral) 55%, #A8326E); color: var(--paper); }
+.b-violet { background: linear-gradient(160deg, var(--violet), var(--ink)); color: var(--paper); }
+.b-ink { background: var(--ink); color: var(--paper); }
+.b-green { background: linear-gradient(135deg, #0F5C4D, var(--ink)); color: var(--paper); }
+.b-sky { background: linear-gradient(160deg, #DCEEFB, #F6FBFF); }
+.dark .muted, .b-coral .muted { color: #E7E9F3; }
+.muted { color: var(--muted); }
+.head { display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
+
+/* history */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; position: relative; }
+.timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 18px; height: 4px; background: var(--ink); border-radius: 4px; }
+.timeline li { position: relative; padding-top: 44px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.timeline li::before { content: ""; position: absolute; top: 8px; left: 0; width: 24px; height: 24px; border-radius: 50%; background: var(--c, var(--coral)); border: 4px solid var(--paper); box-shadow: 0 0 0 3px var(--ink); }
+.timeline .when { font-family: var(--display); font-size: 22px; text-transform: uppercase; }
+@media (max-width: 860px) { .timeline { grid-template-columns: minmax(0, 1fr); } .timeline::before { left: 10px; right: auto; top: 0; bottom: 0; width: 4px; height: auto; } .timeline li { padding: 0 0 0 44px; } .timeline li::before { top: 2px; } }
+
+/* map */
+.map { width: 100%; height: auto; display: block; }
+.sitecards .tile { cursor: pointer; border: 3px solid transparent; text-align: left; font: inherit; color: inherit; }
+.sitecards .tile[aria-pressed="true"] { border-color: var(--lime); }
+.sitecards .tile:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
+
+/* products */
+.range .tile { color: var(--ink); }
+.range svg { width: 100%; max-width: 220px; height: auto; }
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.tab { font: 700 15px var(--body); padding: 10px 18px; border-radius: 999px; border: 2px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; }
+.tab[aria-selected="true"] { background: var(--ink); color: var(--lime); }
+.tab:focus-visible { outline: 3px solid var(--violet); outline-offset: 2px; }
+.panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: center; margin-top: 28px; }
+@media (max-width: 860px) { .panel { grid-template-columns: minmax(0, 1fr); } }
+.panel[hidden] { display: none; }
+.spec { background: var(--ink); color: var(--paper); }
+.spec .num { color: var(--lime); }
+.feat { display: flex; gap: 14px; align-items: flex-start; }
+.dot { flex: none; width: 14px; height: 14px; border-radius: 50%; margin-top: 7px; }
+
+/* strategy */
+.pillar { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); }
+.pillar .num { color: var(--lime); font-size: 44px; }
+
+/* financials */
+.fin .tile { background: #fff; border: 1px solid var(--line); }
+
+/* materiality */
+.mat { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+@media (max-width: 860px) { .mat { grid-template-columns: minmax(0, 1fr); } }
+.mat svg circle.pt { cursor: pointer; transition: r .15s; }
+.mat svg circle.pt:focus-visible { outline: none; stroke: var(--ink); stroke-width: 3; }
+.legend-q { display: flex; flex-direction: column; gap: 14px; }
+.qgroup h4 { margin: 0 0 6px; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: 500 14px var(--body); border: 0; border-radius: 999px; padding: 5px 11px; cursor: pointer; color: #fff; }
+.chip[aria-pressed="true"] { outline: 3px solid var(--ink); outline-offset: 1px; }
+.detail { background: var(--ink); color: var(--paper); border-radius: 22px; padding: 22px; display: flex; flex-direction: column; gap: 6px; }
+.detail .code { font-family: var(--display); font-size: 40px; color: var(--lime); line-height: 1; }
+.keys { display: flex; gap: 16px; flex-wrap: wrap; font-size: 14px; }
+.keys span { display: inline-flex; align-items: center; gap: 6px; }
+.keys i { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+
+/* footer */
+.qrbig { width: 220px; height: 220px; background: #fff; border-radius: 18px; padding: 12px; }
+.contact { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 36px; align-items: center; }
+@media (max-width: 640px) { .contact { grid-template-columns: minmax(0, 1fr); } }
+.copy { font: 700 14px var(--body); background: var(--lime); color: var(--ink); border: 0; border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+.copy:focus-visible { outline: 3px solid var(--paper); outline-offset: 2px; }
+.url { font-size: 14px; word-break: break-all; color: var(--onDark); }
+</style>
+
+</head>
+<body>
+<nav class="top" aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top">MAYWOOD</a>
+    <div class="links" id="navlinks">
+      <a class="l" href="#about">Company</a>
+      <a class="l" href="#history">History</a>
+      <a class="l" href="#location">Location</a>
+      <a class="l" href="#products">Products</a>
+      <a class="l" href="#new">New: CYLO-X</a>
+      <a class="l" href="#strategy">Strategy</a>
+      <a class="l" href="#expansion">Expansion</a>
+      <a class="l" href="#financials">Financials</a>
+      <a class="l" href="#materiality">Materiality</a>
+      <a class="l" href="#value">True value</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div class="stack" style="gap:26px">
+      <span class="pill" style="align-self:flex-start">Eurobike · Frankfurt · [Hall __ / Stand __]</span>
+      <h1>Maywood</h1>
+      <p class="tag">150 years of British bikes, made in Nottingham.<br><b>Meet CYLO-X, the light, smart e-bike.</b></p>
+      <div class="qrcard">
+        <div class="qr" id="qr1" role="img" aria-label="QR code that opens this page"></div>
+        <div class="stack" style="gap:6px">
+          <strong style="font-family:var(--display);font-size:24px;text-transform:uppercase;line-height:1.05">Scan to take Maywood with you</strong>
+          <span class="small muted">Open your phone camera and point it at the code. This page opens on your phone.</span>
+        </div>
+      </div>
+    </div>
+    <svg class="bikeart" viewBox="0 0 900 600" role="img" aria-label="Illustration of the CYLO-X e-bike">
+      <defs><linearGradient id="beam" x1="0" x2="1"><stop offset="0" stop-color="#FBF7EF" stop-opacity=".85"/><stop offset="1" stop-color="#FBF7EF" stop-opacity="0"/></linearGradient></defs>
+      <g class="ride">
+        <polygon points="672,152 900,96 900,236" fill="url(#beam)"/>
+        <circle cx="200" cy="400" r="150" fill="none" stroke="#FBF7EF" stroke-width="16"/>
+        <circle cx="700" cy="400" r="150" fill="none" stroke="#FBF7EF" stroke-width="16"/>
+        <circle cx="200" cy="400" r="22" fill="#D4F53C"/><circle cx="700" cy="400" r="22" fill="#D4F53C"/>
+        <path d="M200 400 L430 410 L620 180 M430 410 L360 170 M200 400 L370 200 L610 185 M620 180 L700 400" fill="none" stroke="#D4F53C" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="455" y="275" width="120" height="44" rx="14" transform="rotate(-50 515 297)" fill="#14213D" stroke="#D4F53C" stroke-width="6"/>
+        <circle cx="430" cy="410" r="40" fill="none" stroke="#FBF7EF" stroke-width="10"/>
+        <path d="M310 160 L410 158" stroke="#FBF7EF" stroke-width="20" stroke-linecap="round"/>
+        <path d="M600 165 L672 150" stroke="#FBF7EF" stroke-width="16" stroke-linecap="round"/>
+        <circle cx="345" cy="185" r="9" fill="#FF6F61"/>
+      </g>
+      <path d="M20 568 H880" stroke="#FBF7EF" stroke-opacity=".35" stroke-width="4" stroke-dasharray="18 14"/>
+    </svg>
+  </div>
+</header>
+
+<!-- COMPANY -->
+<section class="band b-paper" id="about">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" style="color:#B3264A">The company</span>
+      <h2>Maywood Cycles of Nottingham</h2>
+      <p class="lead muted">We design and build road, city, mountain and children’s bikes in Nottingham, and we are moving into light, connected e-bikes. A new management team, backed by DratLink Capital, took over the business this year to lead that change.</p>
+    </div>
+    <div class="grid g4">
+      <div class="tile" style="background:var(--lime)"><span class="num">150</span><span>years of British bike making</span></div>
+      <div class="tile" style="background:var(--coral);color:var(--paper)"><span class="num">210</span><span>people in Nottingham: 167 in production, 43 in support teams</span></div>
+      <div class="tile" style="background:var(--violet);color:var(--paper)"><span class="num">£49m</span><span>annual revenue, current year (provisional)</span></div>
+      <div class="tile" style="background:var(--sky)"><span class="num">UK + EU</span><span>sold through retailers including Evans Cycles, Decathlon and Zweirad-Stadler</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORY -->
+<section class="band b-sand" id="history">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" style="color:#B3264A">History</span>
+      <h2>From a Nottingham workshop to the e-bike era</h2>
+    </div>
+    <ol class="timeline">
+      <li style="--c:var(--amber)"><span class="when">150 years ago</span><span>Maywood is founded in Nottingham and starts building bicycles by hand.</span></li>
+      <li style="--c:var(--sky)"><span class="when">Generations</span><span>The range grows to road, city, mountain and kids’ bikes, sold across the UK and Europe.</span></li>
+      <li style="--c:var(--violet)"><span class="when">This year</span><span>Management buyout backed by DratLink Capital. A new team takes the helm.</span></li>
+      <li style="--c:var(--coral)"><span class="when">Now</span><span>CYLO-X and eCYLO join the range: our first light, connected e-bikes.</span></li>
+      <li style="--c:#9BC21A"><span class="when">CY+2 to CY+4</span><span>One new production site a year in Europe, North America and Asia.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="band b-ink dark" id="location">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" style="color:var(--lime)">Where we are</span>
+      <h2>Rooted in Nottingham, selling across Europe</h2>
+      <p class="lead muted">Design, assembly and our 210-person team are in Nottingham, in the English Midlands. Frames come from our partner in Taiwan, and our bikes ship to retailers across the UK and the EU.</p>
+    </div>
+    <div class="chartbox"><svg class="map" id="map1" viewBox="0 0 1000 440" role="img" aria-label="Map of Maywood’s home in Nottingham, its frame supplier in Taiwan and Eurobike in Frankfurt"></svg></div>
+    <div class="keys" style="margin-top:14px">
+      <span><i style="background:var(--lime)"></i>Home: Nottingham, UK</span>
+      <span><i style="background:var(--sky)"></i>Frame supplier: Taiwan</span>
+      <span><i style="background:var(--amber)"></i>Eurobike: Frankfurt</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="band b-paper" id="products">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" style="color:#B3264A">Product range</span>
+      <h2>A bike for every rider</h2>
+    </div>
+    <div class="grid g4 range">
+      <div class="tile" style="background:var(--sky)">
+        <svg viewBox="0 0 300 180" role="img" aria-label="Road bike"><g fill="none" stroke="#14213D" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><circle cx="70" cy="125" r="50"/><circle cx="230" cy="125" r="50"/><path d="M70 125 L145 128 L205 55 M145 128 L120 50 M70 125 L125 60 L200 58 M205 55 L230 125 M105 48 L140 48 M195 50 L225 44"/></g></svg>
+        <h3>Road and city</h3><p>Everyday bikes with classic Maywood craft.</p>
+      </div>
+      <div class="tile" style="background:var(--amber)">
+        <svg viewBox="0 0 300 180" role="img" aria-label="Mountain bike"><g fill="none" stroke="#14213D" stroke-linecap="round" stroke-linejoin="round"><circle cx="70" cy="125" r="50" stroke-width="14"/><circle cx="230" cy="125" r="50" stroke-width="14"/><path d="M70 125 L145 128 L210 60 M145 128 L115 55 M70 125 L130 80 L205 70 M210 60 L230 125 M100 50 L135 50 M195 55 L235 50" stroke-width="10"/></g></svg>
+        <h3>Mountain and kids</h3><p>Trail bikes, plus the MTB JR for young riders.</p>
+      </div>
+      <div class="tile" style="background:var(--lime)">
+        <svg viewBox="0 0 300 180" role="img" aria-label="E-bike"><g fill="none" stroke="#14213D" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><circle cx="70" cy="125" r="50"/><circle cx="230" cy="125" r="50"/><path d="M70 125 L145 128 L205 55 M145 128 L120 50 M70 125 L125 60 L200 58 M205 55 L230 125 M105 48 L140 48 M195 50 L225 44"/></g><path d="M150 70 L135 100 L152 100 L140 125 L170 90 L152 90 L162 70 Z" fill="#E2456B"/></svg>
+        <h3>CYLO and eCYLO</h3><p>Light, connected e-bikes, led by CYLO-X.</p>
+      </div>
+      <div class="tile" style="background:var(--coral);color:var(--paper)">
+        <svg viewBox="0 0 300 180" role="img" aria-label="Custom painted bike"><g fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="70" cy="125" r="50" stroke="#FBF7EF" stroke-width="9"/><circle cx="230" cy="125" r="50" stroke="#FBF7EF" stroke-width="9"/><path d="M70 125 L145 128 L205 55 M145 128 L120 50 M70 125 L125 60 L200 58 M205 55 L230 125" stroke="#D4F53C" stroke-width="12"/></g><circle cx="160" cy="30" r="12" fill="#FFB547"/><circle cx="190" cy="22" r="10" fill="#7FB8E6"/><circle cx="130" cy="22" r="9" fill="#FBF7EF"/></svg>
+        <h3>Custom designs</h3><p>Retailer artwork and own-label runs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW PRODUCTS -->
+<section class="band b-lime" id="new">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" style="color:var(--violet)">New products</span>
+      <h2>CYLO-X: light, beautiful, smart</h2>
+      <p class="lead">Most e-bikes are heavy, look bolted together and do little more than show speed. We designed the bike and its motor together.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="CYLO-X features">
+      <button class="tab" role="tab" id="t-bike" aria-selected="true" aria-controls="p-bike">The bike</button>
+      <button class="tab" role="tab" id="t-drive" aria-selected="false" aria-controls="p-drive">Force-X drive</button>
+      <button class="tab" role="tab" id="t-app" aria-selected="false" aria-controls="p-app">Gleam app</button>
+      <button class="tab" role="tab" id="t-rider" aria-selected="false" aria-controls="p-rider">Who rides it</button>
+    </div>
+    <div class="panel" role="tabpanel" id="p-bike" aria-labelledby="t-bike">
+      <div class="grid g2">
+        <div class="tile spec"><span class="num">10 kg</span><span>total weight (23 lb), about half a typical e-bike</span></div>
+        <div class="tile spec"><span class="num">250 W</span><span>Force-X motor</span></div>
+        <div class="tile spec"><span class="num">20 mi</span><span>range, removable battery</span></div>
+        <div class="tile" style="background:var(--coral);color:var(--paper)"><span class="num">$1,950</span><span>target retail price</span></div>
+      </div>
+      <div class="stack">
+        <div class="feat"><span class="dot" style="background:var(--ink)"></span><p><b>Ultralight carbon frame</b>, designed around the motor.</p></div>
+        <div class="feat"><span class="dot" style="background:var(--coral)"></span><p><b>Built-in sensors</b> for air quality, road vibration and noise.</p></div>
+        <div class="feat"><span class="dot" style="background:var(--violet)"></span><p><b>Safe by design</b>: integrated lights, motor lock and tamper alerts.</p></div>
+        <div class="feat"><span class="dot" style="background:#2E6FD8"></span><p><b>Easy to service</b>: standard mechanical parts any shop can fix; electronics come back to us.</p></div>
+      </div>
+    </div>
+    <div class="panel" role="tabpanel" id="p-drive" aria-labelledby="t-drive" hidden>
+      <svg viewBox="0 0 420 420" role="img" aria-label="Dial showing pedal force multiplied up to ten times" style="max-width:360px;width:100%;justify-self:center">
+        <circle cx="210" cy="210" r="196" fill="#14213D"/>
+        <circle cx="210" cy="210" r="150" fill="none" stroke="#3A2C78" stroke-width="28"/>
+        <path d="M104 316 A150 150 0 1 1 316 316" fill="none" stroke="#D4F53C" stroke-width="28" stroke-linecap="round"/>
+        <text x="210" y="228" text-anchor="middle" font-family="Oswald, Arial Narrow, sans-serif" font-size="110" font-weight="700" fill="#FBF7EF">10×</text>
+        <text x="210" y="276" text-anchor="middle" font-size="20" font-weight="700" fill="#D4F53C" letter-spacing="2">YOUR PEDAL FORCE</text>
+      </svg>
+      <div class="stack">
+        <h3 style="font-size:34px">Force-X makes every rider feel strong</h3>
+        <div class="feat"><span class="dot" style="background:var(--ink)"></span><p>Our own internal torque sensors give an instant, natural response.</p></div>
+        <div class="feat"><span class="dot" style="background:var(--coral)"></span><p>Multiplies your pedal force up to ten times.</p></div>
+        <div class="feat"><span class="dot" style="background:var(--violet)"></span><p>A direct link to the drivetrain means less energy lost.</p></div>
+        <div class="feat"><span class="dot" style="background:#2E6FD8"></span><p>Best-in-class battery management.</p></div>
+      </div>
+    </div>
+    <div class="panel" role="tabpanel" id="p-app" aria-labelledby="t-app" hidden>
+      <svg viewBox="0 0 560 520" role="img" aria-label="The Gleam app on a phone and an Apple Watch" style="max-width:440px;width:100%;justify-self:center">
+        <rect x="90" y="10" width="270" height="500" rx="40" fill="#14213D"/>
+        <rect x="108" y="50" width="234" height="420" rx="14" fill="#FBF7EF"/>
+        <rect x="108" y="50" width="234" height="50" fill="#E2456B"/>
+        <text x="225" y="83" text-anchor="middle" font-size="20" font-weight="700" fill="#FBF7EF" letter-spacing="3">GLEAM</text>
+        <text x="225" y="160" text-anchor="middle" font-family="Oswald, Arial Narrow, sans-serif" font-size="56" font-weight="700" fill="#14213D">5.89</text>
+        <text x="225" y="186" text-anchor="middle" font-size="14" fill="#4E5874">miles this ride</text>
+        <rect x="108" y="210" width="234" height="170" fill="#3A2C78"/>
+        <path d="M130 350 L190 350 L190 290 L250 290 L250 240 L320 240" fill="none" stroke="#D4F53C" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="130" cy="350" r="10" fill="#FBF7EF"/><circle cx="320" cy="240" r="10" fill="#E2456B"/>
+        <rect x="140" y="405" width="170" height="40" rx="20" fill="#14213D"/>
+        <text x="225" y="431" text-anchor="middle" font-size="14" font-weight="700" fill="#D4F53C" letter-spacing="1">LOCK MOTOR</text>
+        <rect x="400" y="290" width="130" height="160" rx="32" fill="#14213D"/>
+        <rect x="414" y="306" width="102" height="128" rx="16" fill="#D4F53C"/>
+        <text x="465" y="372" text-anchor="middle" font-family="Oswald, Arial Narrow, sans-serif" font-size="34" font-weight="700" fill="#14213D">5.89</text>
+        <text x="465" y="396" text-anchor="middle" font-size="12" fill="#14213D">miles</text>
+      </svg>
+      <div class="stack">
+        <h3 style="font-size:34px">Gleam: the bike in your pocket</h3>
+        <div class="feat"><span class="dot" style="background:var(--coral)"></span><p><b>Remote motor lock</b> and alerts if someone tampers with the bike.</p></div>
+        <div class="feat"><span class="dot" style="background:var(--violet)"></span><p><b>Navigation for cyclists</b>, on the phone or the Apple Watch.</p></div>
+        <div class="feat"><span class="dot" style="background:var(--ink)"></span><p><b>Automatic ride tracking</b>: distance, calories and power, with Apple HealthKit.</p></div>
+        <div class="feat"><span class="dot" style="background:#2E6FD8"></span><p><b>City data</b>: riders can share air, noise and road quality to make their city better.</p></div>
+      </div>
+    </div>
+    <div class="panel" role="tabpanel" id="p-rider" aria-labelledby="t-rider" hidden>
+      <div class="grid g2">
+        <div class="tile" style="background:var(--violet);color:var(--paper)"><span class="num" style="color:var(--lime)">+61%</span><span>bike commuting in the US since 2018</span></div>
+        <div class="tile" style="background:var(--coral);color:var(--paper)"><span class="num">81%</span><span>of millennials want convenient alternatives to the car</span></div>
+      </div>
+      <div class="stack">
+        <h3 style="font-size:34px">Built for the city commuter</h3>
+        <div class="feat"><span class="dot" style="background:var(--ink)"></span><p>Around 28 years old, lives in the city centre.</p></div>
+        <div class="feat"><span class="dot" style="background:var(--coral)"></span><p>Rides under 15 miles a day, so a lighter, shorter-range bike fits.</p></div>
+        <div class="feat"><span class="dot" style="background:var(--violet)"></span><p>Cares about design and uses their phone for everything.</p></div>
+        <p class="src" style="color:var(--ink)">Source: CYLO-X investor pitch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGY -->
+<section class="band b-violet dark" id="strategy">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" style="color:var(--lime)">Strategy</span>
+      <h2>Four moves for the next five years</h2>
+      <p class="lead muted">We keep what makes Maywood strong, a trusted brand and skilled people in Nottingham, and grow where the market is going.</p>
+    </div>
+    <div class="grid g4">
+      <div class="tile pillar"><span class="num">E-bikes</span><h3>Lead with CYLO</h3><p class="muted">Add CYLO and CYLO-X to the range and grow e-bike sales across Europe, starting with a distribution partner in Germany.</p></div>
+      <div class="tile pillar"><span class="num">+6%</span><h3>Grow capacity</h3><p class="muted">Raise output in Nottingham by about 6% through better use of the plant, then add three new sites of up to +15% each.</p></div>
+      <div class="tile pillar"><span class="num">20%</span><h3>New channels</h3><p class="muted">Keep our retail partners and add our own website and Maywood stores, each up to 10% of sales.</p></div>
+      <div class="tile pillar"><span class="num">−0.5%</span><h3>Lower costs, safely</h3><p class="muted">Cut cost of goods by about 0.5% a year through learning and automation, with safer machines and retrained staff.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPANSION -->
+<section class="band b-sky" id="expansion">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" style="color:#B3264A">Global expansion</span>
+      <h2>Three new sites, one a year from CY+2</h2>
+      <p class="lead muted">Each site adds up to 15% of production capacity, run at up to 90% utilisation. Leadership will set the order. Tap a site to see why we chose it.</p>
+    </div>
+    <div class="chartbox"><svg class="map" id="map2" viewBox="0 0 1000 440" role="img" aria-label="Map of the planned new sites in Toulouse, Austin and Bangkok, linked to Nottingham"></svg></div>
+    <div class="grid g3 sitecards" style="margin-top:20px" id="sitecards">
+      <button class="tile" data-site="tls" aria-pressed="true" style="background:#fff"><span class="eyebrow" style="color:#2E6FD8">Europe</span><h3>Toulouse, France</h3><p class="muted">Close to our EU customers, avoiding the new EU export costs and delays for bikes sold in Europe.</p></button>
+      <button class="tile" data-site="aus" aria-pressed="false" style="background:#fff"><span class="eyebrow" style="color:#B3264A">North America</span><h3>Austin, Texas</h3><p class="muted">Near major markets, with a strong cycling culture, skilled workers, good logistics and an existing supply chain.</p></button>
+      <button class="tile" data-site="bkk" aria-pressed="false" style="background:#fff"><span class="eyebrow" style="color:#6B4FC9">Asia</span><h3>Bangkok, Thailand</h3><p class="muted">An alternative to Taiwan, where new tariffs and geopolitical risk argue against more long-term investment.</p></button>
+    </div>
+    <div class="grid g3" style="margin-top:20px">
+      <div class="tile" style="background:var(--ink);color:var(--paper)"><span class="num" style="color:var(--lime)">£500k</span><span>average capital cost per site</span></div>
+      <div class="tile" style="background:var(--ink);color:var(--paper)"><span class="num" style="color:var(--lime)">£100k</span><span>average running cost per site a year</span></div>
+      <div class="tile" style="background:var(--ink);color:var(--paper)"><span class="num" style="color:var(--lime)">+45%</span><span>maximum added capacity once all three sites are open</span></div>
+    </div>
+    <p class="src" style="margin-top:14px">Source: Maywood global production capacity expansion plan.</p>
+  </div>
+</section>
+
+<!-- FINANCIALS -->
+<section class="band b-paper fin" id="financials">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" style="color:#B3264A">Financials at a glance</span>
+      <h2>£49m of sales, a strong balance sheet, margins to rebuild</h2>
+      <p class="lead muted">Revenue has eased over five years and profit has fallen. The new plan targets growth in e-bikes and lower costs.</p>
+    </div>
+    <div class="grid g4">
+      <div class="tile"><span class="eyebrow muted">Revenue</span><span class="num">£49.3m</span><span class="small muted">current year, provisional</span></div>
+      <div class="tile"><span class="eyebrow muted">Gross margin</span><span class="num">33.9%</span><span class="small muted">£16.7m</span></div>
+      <div class="tile"><span class="eyebrow muted">EBITDA</span><span class="num">£1.6m</span><span class="small muted">3.3% of revenue</span></div>
+      <div class="tile"><span class="eyebrow muted">Net equity</span><span class="num">£23.3m</span><span class="small muted">at year end</span></div>
+    </div>
+    <div class="tile" style="margin-top:20px">
+      <h3>Revenue and EBITDA, last five years (£m)</h3>
+      <div class="chartbox"><svg id="finchart" viewBox="0 0 900 330" role="img" aria-label="Revenue fell from 54.2 to 49.3 million pounds over five years; EBITDA peaked at 4.6 million three years ago and is 1.6 million this year" style="width:100%;min-width:520px;height:auto"></svg></div>
+      <div class="keys"><span><i style="background:var(--violet)"></i>Revenue</span><span><i style="background:var(--coral)"></i>EBITDA</span></div>
+      <p class="src">Source: Maywood Cycles of Nottingham Ltd, provisional current-year results. CY = current year.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALITY -->
+<section class="band b-sand" id="materiality">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" style="color:#B3264A">Materiality map</span>
+      <h2>Seven issues matter most</h2>
+      <p class="lead muted">We scored 18 environmental, social and governance issues on how much stakeholders care (across) and how much they could affect the business (up). Tap a dot or an issue for details.</p>
+    </div>
+    <div class="mat">
+      <div class="tile" style="background:#fff;padding:16px">
+        <div class="chartbox"><svg id="matsvg" viewBox="0 0 600 520" role="img" aria-label="Materiality matrix of 18 issues; seven sit in the top-priority corner" style="width:100%;min-width:320px;height:auto"></svg></div>
+        <div class="keys" style="padding:0 8px 6px"><span><i style="background:#2E6FD8"></i>Environmental (E)</span><span><i style="background:#2E9E5B"></i>Social (S)</span><span><i style="background:#6B4FC9"></i>Governance (G)</span></div>
+      </div>
+      <div class="stack">
+        <div class="detail" id="matdetail" aria-live="polite"></div>
+        <div class="legend-q" id="matlegend"></div>
+      </div>
+    </div>
+    <p class="src" style="margin-top:14px">Scores 1 (low) to 5 (high), set by the management team from desk research; top priority = 3.5 or more on both axes. No stakeholders were surveyed yet.</p>
+  </div>
+</section>
+
+<!-- TRUE VALUE -->
+<section class="band b-green dark" id="value">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" style="color:var(--mint)">True Value Creation</span>
+      <h2>We create £13.2m of true value, but our footprint costs £10.8m</h2>
+      <p class="lead muted">Following the Lindéngruppen model, we add the value we create for society (profit, pay and taxes) and subtract the cost of our environmental and social impacts. The model is set at a £80m revenue scale after expansion.</p>
+    </div>
+    <div class="tile" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18)">
+      <div class="chartbox"><svg id="tvc" viewBox="0 0 960 420" role="img" aria-label="Waterfall from earnings of 7.5 million pounds, plus salaries 14 and taxes 2.5, minus carbon 5.6, waste 2.24, gender inequality 1.84 and health and safety 1.12, to true value of 13.2 million" style="width:100%;min-width:640px;height:auto"></svg></div>
+      <div class="keys"><span><i style="background:var(--mint)"></i>Value added</span><span><i style="background:#FF8A8E"></i>Impact cost</span><span><i style="background:var(--onDark)"></i>Total</span></div>
+    </div>
+    <div class="grid g3" style="margin-top:20px">
+      <div class="tile pillar"><h3 style="color:var(--lime)">Carbon is the biggest cost</h3><p class="muted">£5.6m, and 98% of it comes from the materials we buy, such as aluminium and steel.</p></div>
+      <div class="tile pillar"><h3 style="color:var(--lime)">Materials are the lever</h3><p class="muted">Solar panels on our sites would cut only about 1% of emissions. Recycled aluminium would do far more.</p></div>
+      <div class="tile pillar"><h3 style="color:var(--lime)">Safety and inclusion count too</h3><p class="muted">Workplace accidents and a 26% female workforce in the UK cost £3.0m together.</p></div>
+    </div>
+    <p class="src" style="margin-top:14px">Source: Maywood True Value Creation model (externalities priced per £1m of revenue: carbon £70k, waste £28k, health and safety £14k, gender inequality £23k). Directional estimates, not audited.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="band b-ink dark" id="contact">
+  <div class="wrap contact">
+    <div class="qrbig" id="qr2" role="img" aria-label="QR code that opens this page"></div>
+    <div class="stack">
+      <span class="eyebrow" style="color:var(--lime)">Come and ride it</span>
+      <h2>Book a test ride at [Hall __ / Stand __]</h2>
+      <p class="muted">Retailers and distributors: talk to us about CYLO-X and e-bike distribution, starting with Germany. Email [name@maywood.co.uk].</p>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <button class="copy" id="copybtn" type="button">Copy page link</button>
+        <span class="url" id="pageurl"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  const PAGE_URL = /^https?:$/.test(location.protocol) ? location.href.split('#')[0] : 'https://claude.ai/artifact/ABFtbJehfpQ87PYrQeLaLA';
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const txt = (parent, x, y, s, attrs) => { const t = el('text', Object.assign({ x, y }, attrs || {}), parent); t.textContent = s; return t; };
+
+  // QR codes
+  function drawQR(id) {
+    const box = document.getElementById(id);
+    if (!box || typeof qrcode === 'undefined') { if (box) box.textContent = PAGE_URL; return; }
+    const qr = qrcode(0, 'M'); qr.addData(PAGE_URL); qr.make();
+    const n = qr.getModuleCount();
+    const svg = el('svg', { viewBox: `0 0 ${n} ${n}`, 'shape-rendering': 'crispEdges' });
+    let d = '';
+    for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (qr.isDark(r, c)) d += `M${c} ${r}h1v1h-1z`;
+    el('path', { d, fill: '#14213D' }, svg);
+    box.appendChild(svg);
+  }
+  drawQR('qr1'); drawQR('qr2');
+  document.getElementById('pageurl').textContent = PAGE_URL;
+  document.getElementById('copybtn').addEventListener('click', function () {
+    const b = this;
+    const done = () => { b.textContent = 'Link copied'; setTimeout(() => b.textContent = 'Copy page link', 1800); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(document.getElementById('pageurl')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Press Ctrl+C to copy'; };
+    try { navigator.clipboard.writeText(PAGE_URL).then(done, fallback); } catch (e) { fallback(); }
+  });
+
+  // nav highlight
+  const links = [...document.querySelectorAll('#navlinks a')];
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); const on = links.find(a => a.classList.contains('on')); if (on) on.scrollIntoView({ block: 'nearest', inline: 'center' }); } }), { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('section.band').forEach(s => io.observe(s));
+
+  // maps: equirectangular, lon -130..135, lat 68..-5
+  const P = (lat, lon) => [ (lon + 130) / 265 * 1000, (68 - lat) / 73 * 440 ];
+  function grid(svg, stroke) {
+    for (let lon = -120; lon <= 130; lon += 30) { const [x] = P(0, lon); el('line', { x1: x, x2: x, y1: 0, y2: 440, stroke, 'stroke-width': 1 }, svg); }
+    for (let lat = 60; lat >= 0; lat -= 15) { const [, y] = P(lat, 0); el('line', { x1: 0, x2: 1000, y1: y, y2: y, stroke, 'stroke-width': 1 }, svg); }
+  }
+  function arc(svg, a, b, color, dash) {
+    const [x1, y1] = P(a[0], a[1]), [x2, y2] = P(b[0], b[1]);
+    const mx = (x1 + x2) / 2, my = Math.min(y1, y2) - Math.abs(x2 - x1) * 0.22 - 20;
+    return el('path', { d: `M${x1} ${y1} Q${mx} ${my} ${x2} ${y2}`, fill: 'none', stroke: color, 'stroke-width': 3, 'stroke-dasharray': dash || '0', 'stroke-linecap': 'round' }, svg);
+  }
+  function pin(svg, ll, color, label, dx, dy, anchor, labelColor, r) {
+    const [x, y] = P(ll[0], ll[1]);
+    el('circle', { cx: x, cy: y, r: (r || 9) + 8, fill: color, 'fill-opacity': .25 }, svg);
+    el('circle', { cx: x, cy: y, r: r || 9, fill: color, stroke: '#14213D', 'stroke-width': 2 }, svg);
+    txt(svg, x + dx, y + dy, label, { 'font-size': 18, 'font-weight': 700, fill: labelColor, 'text-anchor': anchor || 'start' });
+  }
+  const NOT = [52.95, -1.15], FRA = [50.11, 8.68], TPE = [25.03, 121.5], TLS = [43.6, 1.44], AUS = [30.27, -97.74], BKK = [13.75, 100.5];
+  const m1 = document.getElementById('map1');
+  grid(m1, 'rgba(232,235,245,.12)');
+  arc(m1, TPE, NOT, '#7FB8E6', '8 8'); arc(m1, NOT, FRA, '#FFB547');
+  pin(m1, NOT, '#D4F53C', 'Nottingham, UK', -16, -18, 'end', '#FBF7EF', 11);
+  pin(m1, FRA, '#FFB547', 'Frankfurt (Eurobike)', 16, 26, 'start', '#FBF7EF');
+  pin(m1, TPE, '#7FB8E6', 'Taiwan (frames)', -14, -18, 'end', '#FBF7EF');
+  txt(m1, 20, 425, 'Map not to scale', { 'font-size': 13, fill: '#B9C0D8' });
+
+  const m2 = document.getElementById('map2');
+  const sites = { tls: { ll: TLS, c: '#2E6FD8', name: 'Toulouse' }, aus: { ll: AUS, c: '#E2456B', name: 'Austin' }, bkk: { ll: BKK, c: '#6B4FC9', name: 'Bangkok' } };
+  function drawMap2(active) {
+    m2.innerHTML = '';
+    grid(m2, 'rgba(20,33,61,.1)');
+    for (const k in sites) { const s = sites[k]; const a = arc(m2, NOT, s.ll, s.c, k === active ? '0' : '6 8'); a.setAttribute('stroke-width', k === active ? 5 : 3); a.setAttribute('stroke-opacity', k === active ? 1 : .55); }
+    pin(m2, NOT, '#D4F53C', 'Nottingham (home)', 16, -16, 'start', '#14213D', 11);
+    pin(m2, TLS, sites.tls.c, 'Toulouse', 16, 26, 'start', '#14213D', active === 'tls' ? 12 : 9);
+    pin(m2, AUS, sites.aus.c, 'Austin', 0, 36, 'middle', '#14213D', active === 'aus' ? 12 : 9);
+    pin(m2, BKK, sites.bkk.c, 'Bangkok', 0, 36, 'middle', '#14213D', active === 'bkk' ? 12 : 9);
+    txt(m2, 20, 425, 'Map not to scale', { 'font-size': 13, fill: '#4E5874' });
+  }
+  drawMap2('tls');
+  document.querySelectorAll('#sitecards .tile').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('#sitecards .tile').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+    drawMap2(b.dataset.site);
+  }));
+
+  // tabs
+  const tabs = [...document.querySelectorAll('.tab')];
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t));
+    t.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { const n = tabs.at((i + (e.key === 'ArrowRight' ? 1 : -1)) % tabs.length); select(n); n.focus(); } });
+  });
+  function select(t) { tabs.forEach(x => { const on = x === t; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute('aria-controls')).hidden = !on; }); }
+  select(tabs[0]);
+
+  // financial chart
+  const fin = [ { y: 'CY−4', rev: 54.19, eb: 3.06 }, { y: 'CY−3', rev: 52.03, eb: 4.65 }, { y: 'CY−2', rev: 50.29, eb: 2.40 }, { y: 'CY−1', rev: 49.71, eb: 2.37 }, { y: 'CY', rev: 49.27, eb: 1.62 } ];
+  const fc = document.getElementById('finchart'), base = 290, top = 30, maxv = 60, sy = v => (base - top) * v / maxv;
+  [0, 20, 40, 60].forEach(v => { el('line', { x1: 60, x2: 880, y1: base - sy(v), y2: base - sy(v), stroke: 'rgba(20,33,61,.12)' }, fc); txt(fc, 50, base - sy(v) + 5, v, { 'font-size': 14, fill: '#4E5874', 'text-anchor': 'end' }); });
+  fin.forEach((d, i) => {
+    const cx = 140 + i * 165;
+    el('rect', { x: cx - 52, y: base - sy(d.rev), width: 60, height: sy(d.rev), rx: 6, fill: '#3A2C78' }, fc).appendChild(Object.assign(document.createElementNS(NS, 'title'), { textContent: `${d.y} revenue: £${d.rev.toFixed(1)}m` }));
+    el('rect', { x: cx + 12, y: base - sy(d.eb), width: 40, height: sy(d.eb), rx: 6, fill: '#E2456B' }, fc).appendChild(Object.assign(document.createElementNS(NS, 'title'), { textContent: `${d.y} EBITDA: £${d.eb.toFixed(1)}m` }));
+    txt(fc, cx - 22, base - sy(d.rev) - 8, d.rev.toFixed(1), { 'font-size': 15, 'font-weight': 700, fill: '#14213D', 'text-anchor': 'middle' });
+    txt(fc, cx + 32, base - sy(d.eb) - 8, d.eb.toFixed(1), { 'font-size': 15, 'font-weight': 700, fill: '#B3264A', 'text-anchor': 'middle' });
+    txt(fc, cx, base + 26, d.y, { 'font-size': 15, fill: '#14213D', 'text-anchor': 'middle', 'font-weight': i === 4 ? 700 : 400 });
+  });
+  el('line', { x1: 60, x2: 880, y1: base, y2: base, stroke: '#14213D', 'stroke-width': 1.5 }, fc);
+
+  // materiality
+  const issues = [
+    ['S7','Product safety and quality','S',4.5,5,'A recall or failure would damage the brand and our retail contracts. E-bike batteries add fire risk.'],
+    ['S1','Workplace health and safety','S',5,4.5,'A serious hand injury on the line this year shows this is a live risk. We are reviewing manual cutting work.'],
+    ['G3','Financial transparency and lender trust','G',4,5,'Lenders and investors rely on accurate figures: monthly accounts, quarterly stock counts and a weekly cash forecast.'],
+    ['S3','Pensions and pay compliance','S',4,4.5,'Moving pension contributions to monthly payment and clearing the deferred amount on a plan agreed with trustees.'],
+    ['S2','Job security and fair automation','S',4.5,4,'No compulsory redundancies during the job-protection period; staff are retrained when tasks are automated.'],
+    ['G2','Board oversight and related-party controls','G',3.5,4.5,'Board approval of all related-party payments and a written expenses and benefits policy.'],
+    ['E1','Low-carbon products and e-bike growth','E',4,4,'Our main opportunity: bikes and e-bikes cut transport emissions, and retailers and cities want them.'],
+    ['G1','Tax and HMRC compliance','G',3,4.5,'Paying PAYE on time every month to avoid penalties and interest.'],
+    ['G4','Supplier concentration (Taiwan frames)','G',2.5,4,'22% of purchases come from one frame supplier; new sites reduce the dependence.'],
+    ['E4','E-bike battery rules and end of life','E',3,4,'EU battery rules phase in from 2027: battery passport, due diligence, replaceable batteries.'],
+    ['E3','Aluminium and materials sourcing','E',2.5,3.5,'Recycled aluminium could cut both price risk and emissions.'],
+    ['S6','Supplier labour standards','S',3,3.5,'A Modern Slavery Act statement and a supplier code of conduct for our top suppliers.'],
+    ['S5','Community and Nottingham heritage','S',4,3,'Local jobs, our heritage and the future of our Nottingham buildings matter to the city.'],
+    ['S4','Skills and training','S',3.5,3,'E-bike assembly and electrical skills, funded through the apprenticeship levy and supplier training.'],
+    ['S8','Diversity and inclusion','S',3,2,'Below the gender pay gap reporting threshold, but still important for hiring.'],
+    ['E2','Factory energy use and emissions','E',2.5,2,'Rarely raised so far; retailers increasingly ask suppliers for carbon data.'],
+    ['E5','Waste, packaging and obsolete stock','E',2,2.5,'Old stock to dispose of; retailers may ask about packaging waste.'],
+    ['E6','Transport emissions','E',2,1.5,'Frames shipped from Asia and bikes exported to the EU; little pressure yet.']
+  ];
+  const col = { E: '#2E6FD8', S: '#2E9E5B', G: '#6B4FC9' };
+  const quad = r => r[3] >= 3.5 && r[4] >= 3.5 ? 'Top priority' : r[4] >= 3.5 ? 'Business risk' : r[3] >= 3.5 ? 'Explain' : 'Monitor';
+  const ms = document.getElementById('matsvg'), x0 = 60, x1 = 580, yb = 470, yt = 20, lo = 1, hi = 5.25;
+  const MX = v => x0 + (v - lo) / (hi - lo) * (x1 - x0), MY = v => yb - (v - lo) / (hi - lo) * (yb - yt);
+  el('rect', { x: MX(3.5), y: MY(hi), width: MX(hi) - MX(3.5), height: MY(3.5) - MY(hi), fill: '#D4F53C', 'fill-opacity': .35 }, ms);
+  for (let t = 1; t <= 5; t++) { el('line', { x1: MX(t), x2: MX(t), y1: yt, y2: yb, stroke: 'rgba(20,33,61,.1)' }, ms); el('line', { x1: x0, x2: x1, y1: MY(t), y2: MY(t), stroke: 'rgba(20,33,61,.1)' }, ms); txt(ms, MX(t), yb + 22, t, { 'font-size': 14, fill: '#4E5874', 'text-anchor': 'middle' }); txt(ms, x0 - 10, MY(t) + 5, t, { 'font-size': 14, fill: '#4E5874', 'text-anchor': 'end' }); }
+  el('line', { x1: MX(3.5), x2: MX(3.5), y1: yt, y2: yb, stroke: '#14213D', 'stroke-dasharray': '5 5', 'stroke-opacity': .5 }, ms);
+  el('line', { x1: x0, x2: x1, y1: MY(3.5), y2: MY(3.5), stroke: '#14213D', 'stroke-dasharray': '5 5', 'stroke-opacity': .5 }, ms);
+  txt(ms, MX(hi) - 8, MY(3.5) - 10, 'TOP PRIORITIES', { 'font-size': 15, 'font-weight': 700, fill: '#14213D', 'text-anchor': 'end' });
+  txt(ms, x0 + 10, MY(hi) + 20, 'BUSINESS RISKS', { 'font-size': 15, 'font-weight': 700, fill: '#4E5874' });
+  txt(ms, MX(hi) - 8, yb - 12, 'EXPLAIN', { 'font-size': 15, 'font-weight': 700, fill: '#4E5874', 'text-anchor': 'end' });
+  txt(ms, x0 + 10, yb - 12, 'MONITOR', { 'font-size': 15, 'font-weight': 700, fill: '#4E5874' });
+  txt(ms, (x0 + x1) / 2, 515, 'Stakeholder priority →', { 'font-size': 15, 'font-weight': 700, fill: '#14213D', 'text-anchor': 'middle' });
+  const yl = txt(ms, 0, 0, 'Business impact →', { 'font-size': 15, 'font-weight': 700, fill: '#14213D', 'text-anchor': 'middle', transform: `translate(18 ${(yt + yb) / 2}) rotate(-90)` });
+  const pts = {}, chips = {};
+  issues.forEach(r => {
+    const g = el('g', {}, ms);
+    const c = el('circle', { class: 'pt', cx: MX(r[3]), cy: MY(r[4]), r: 10, fill: col[r[2]], stroke: '#fff', 'stroke-width': 2, tabindex: 0, role: 'button', 'aria-label': `${r[0]} ${r[1]}` }, g);
+    el('title', {}, c).textContent = `${r[0]} ${r[1]}`;
+    txt(g, MX(r[3]) + 14, MY(r[4]) - 8, r[0], { 'font-size': 14, 'font-weight': 700, fill: '#14213D', stroke: '#fff', 'stroke-width': 4, 'paint-order': 'stroke' });
+    c.addEventListener('click', () => pick(r[0]));
+    c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(r[0]); } });
+    pts[r[0]] = c;
+  });
+  const leg = document.getElementById('matlegend');
+  ['Top priority', 'Business risk', 'Explain', 'Monitor'].forEach(q => {
+    const g = document.createElement('div'); g.className = 'qgroup';
+    const h = document.createElement('h4'); h.textContent = q === 'Top priority' ? 'Top priorities' : q === 'Business risk' ? 'Business risks' : q; g.appendChild(h);
+    const cs = document.createElement('div'); cs.className = 'chips';
+    issues.filter(r => quad(r) === q).forEach(r => { const b = document.createElement('button'); b.className = 'chip'; b.type = 'button'; b.style.background = col[r[2]]; b.textContent = `${r[0]} ${r[1]}`; b.addEventListener('click', () => pick(r[0])); cs.appendChild(b); chips[r[0]] = b; });
+    g.appendChild(cs); leg.appendChild(g);
+  });
+  const det = document.getElementById('matdetail');
+  function pick(code) {
+    const r = issues.find(x => x[0] === code);
+    for (const k in pts) { pts[k].setAttribute('r', k === code ? 15 : 10); chips[k].setAttribute('aria-pressed', k === code); }
+    det.innerHTML = '';
+    const a = document.createElement('span'); a.className = 'code'; a.textContent = r[0];
+    const b = document.createElement('strong'); b.style.fontSize = '20px'; b.textContent = r[1];
+    const c = document.createElement('span'); c.className = 'small'; c.style.color = '#D4F53C'; c.textContent = `${quad(r)} · stakeholder priority ${r[3]} · business impact ${r[4]}`;
+    const d = document.createElement('p'); d.style.color = '#E8EBF5'; d.textContent = r[5];
+    det.append(a, b, c, d);
+  }
+  pick('S7');
+
+  // true value waterfall
+  const tv = [ ['Earnings', 7.5, 'add'], ['Salaries and pay', 14, 'add'], ['Taxes', 2.5, 'add'], ['Carbon', -5.6, 'cost'], ['Waste', -2.24, 'cost'], ['Gender inequality', -1.84, 'cost'], ['Health and safety', -1.12, 'cost'] ];
+  const ws = document.getElementById('tvc'), wb = 360, wt = 30, wmax = 25, wy = v => wb - (wb - wt) * v / wmax, bw = 84, step = 112;
+  [0, 5, 10, 15, 20, 25].forEach(v => { el('line', { x1: 50, x2: 950, y1: wy(v), y2: wy(v), stroke: 'rgba(232,235,245,.12)' }, ws); txt(ws, 42, wy(v) + 5, v, { 'font-size': 13, fill: '#B9C0D8', 'text-anchor': 'end' }); });
+  let run = 0;
+  tv.forEach((d, i) => {
+    const x = 70 + i * step, from = run, to = run + d[1]; run = to;
+    const yA = wy(Math.max(from, to)), h = Math.abs(wy(from) - wy(to));
+    const rct = el('rect', { x, y: yA, width: bw, height: h, rx: 4, fill: d[2] === 'add' ? '#7FE0B0' : '#FF8A8E' }, ws);
+    el('title', {}, rct).textContent = `${d[0]}: ${d[1] > 0 ? '+' : '−'}£${Math.abs(d[1]).toFixed(2)}m`;
+    if (i < tv.length - 1) el('line', { x1: x + bw, x2: x + step, y1: wy(to), y2: wy(to), stroke: '#B9C0D8', 'stroke-dasharray': '3 3' }, ws);
+    txt(ws, x + bw / 2, yA - 8, (d[1] > 0 ? '+' : '−') + String(Math.abs(d[1])), { 'font-size': 15, 'font-weight': 700, fill: '#FBF7EF', 'text-anchor': 'middle' });
+    const words = d[0].split(' ');
+    const lab = txt(ws, x + bw / 2, wb + 22, '', { 'font-size': 13, fill: '#E8EBF5', 'text-anchor': 'middle' });
+    if (words.length > 1) { const t1 = el('tspan', { x: x + bw / 2, dy: 0 }, lab); t1.textContent = words[0]; const t2 = el('tspan', { x: x + bw / 2, dy: 16 }, lab); t2.textContent = words.slice(1).join(' '); } else lab.textContent = d[0];
+  });
+  const xt = 70 + tv.length * step;
+  el('line', { x1: 70 + (tv.length - 1) * step + bw, x2: xt, y1: wy(run), y2: wy(run), stroke: '#B9C0D8', 'stroke-dasharray': '3 3' }, ws);
+  const tot = el('rect', { x: xt, y: wy(run), width: bw, height: wb - wy(run), rx: 4, fill: '#E8EBF5' }, ws);
+  el('title', {}, tot).textContent = `True value created: £${run.toFixed(1)}m`;
+  txt(ws, xt + bw / 2, wy(run) - 8, '£' + run.toFixed(1) + 'm', { 'font-size': 16, 'font-weight': 700, fill: '#D4F53C', 'text-anchor': 'middle' });
+  const tl = txt(ws, xt + bw / 2, wb + 22, '', { 'font-size': 13, fill: '#E8EBF5', 'text-anchor': 'middle', 'font-weight': 700 });
+  const a1 = el('tspan', { x: xt + bw / 2, dy: 0 }, tl); a1.textContent = 'True value'; const a2 = el('tspan', { x: xt + bw / 2, dy: 16 }, tl); a2.textContent = 'created';
+  el('line', { x1: 50, x2: 950, y1: wb, y2: wb, stroke: '#E8EBF5', 'stroke-width': 1.5 }, ws);
+  txt(ws, 50, 18, '£m', { 'font-size': 13, fill: '#B9C0D8' });
+})();
+</script>
+
+</body>
+</html>
